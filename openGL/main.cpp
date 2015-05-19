@@ -1,16 +1,4 @@
-#define _CRT_SECURE_NO_WARNINGS
-
-
-#include <OpenGL/gl.h>
-#include <GLUT/glut.h>
-#include <stdio.h>
-#include <vector>
-#include <math.h>
-#include <list>
-
-using namespace std;
-
-
+/*
 class OctreeNode {
     enum eValue { Depth_Limit = 4, Width = 1000}; //노드의 세부수준을 4단계로 제한, 최초 노드의 가로 크기
     BoundingBox*    m_pBoundBox;                   //현재 노드의 바운딩 박스
@@ -22,6 +10,7 @@ class OctreeNode {
 struct Vector3{
     float x, y, z;
 }vec;
+
 
 void AddChildNode (OctreeNode* );                  //이 노드에 자식 노드를 추가합니다.
 bool AddObject (Object* );                         //이 노드에 오브젝트를 추가합니다
@@ -95,45 +84,133 @@ bool FindCurrentPosNode(const Vector3 vObjPos, OctreeNode* const pNode){
         //만약 물체가 노드 안에 완전히 속한다면 해당 노드를 반환, 자식 노드들도 판단해 보기
         return true;
 }
+ */
+ 
+#include <stdlib.h>
+#include <GLUT/glut.h>
 
+static int width;
+static int height;
+static GLfloat ambient2[] = {0.0, 0.0, 0.0, 1.0};
+static GLfloat ambient[] = {0.0, 0.0, 0.0, 1.0};
+static GLfloat diffuse[]  = {1.0, 1.0, 1.0, 1.0};
+static GLfloat pos[]  = {-2, 3, -3};
+static GLfloat pos2[]  = {-1, 0, 3};
 
-void display()
-{
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+void init (void) {
+    glEnable( GL_DEPTH_TEST );
+    glEnable(GL_COLOR_MATERIAL);
+    glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE);
     
-    glEnable(GL_DEPTH_TEST);
-    // view transform
+    glClearColor( 0.0, 0.0, 0.0, 1.0 );
+    glShadeModel(GL_SMOOTH);
+    width = glutGet( GLUT_WINDOW_WIDTH );
+    height = glutGet( GLUT_WINDOW_HEIGHT );
+}
+
+// draw the closer sphere
+void drawCloserSphere() {
+    glPushMatrix();
+    glRotatef(-90, 1.0, 0.0, 0.0);
+    glutSolidSphere(1, 20, 20);
+    glPopMatrix();
+    
+}
+
+// draw the farther sphere
+void drawFartherSphere() {
+    glPushMatrix();
+    glColor3f(1.0, 1.0, 1.0);
+    glTranslatef(1.5, -1, 2.5);
+    glRotatef(-90, 1.0, 0.0, 0.0);
+    glutSolidSphere(1, 20, 20);
+    glPopMatrix();
+}
+
+// draw the floor
+void drawPlane() {
+    glPushMatrix();
+    glColor3f(1.0, 1.0, 1.0);
+    glBegin(GL_QUADS);
+    glVertex3f(-6.0, -5.0, 0.0);
+    glVertex3f(-6.0, -5.0, 50.0);
+    glVertex3f(15.0, -5.0, 50.0);
+    glVertex3f(15.0, -5.0, 0.0);
+    glEnd();
+    glPopMatrix();
+}
+
+// draw everything and turn on lighting
+void display (void) {
+    glViewport( 0, 0, width, height );
+    glMatrixMode( GL_PROJECTION );
+    glLoadIdentity();
+    
+    float ratio = height/width;
+    gluPerspective( 60, ratio, .1, 100 );
+    
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
     
-    gluLookAt(0, 0, 10, 0, 0, 0, 0, 1, 0);
+    glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
+    
+    gluLookAt( 0.0, 0.0, -5.0,
+              0.0, 0.0, 0.0,
+              0.0, 1.0, 0.0);
+    
+    glLightfv( GL_LIGHT0, GL_AMBIENT, ambient );
+    glLightfv( GL_LIGHT0, GL_DIFFUSE,  diffuse );
+   	glLightfv( GL_LIGHT0, GL_POSITION, pos );
+   	
+   	glLightfv( GL_LIGHT1, GL_AMBIENT, ambient2 );
+   	glLightfv( GL_LIGHT1, GL_POSITION, pos2 );
+    
+    glEnable( GL_LIGHTING );
+    glEnable( GL_LIGHT0 );
+    glEnable( GL_LIGHT1 );
+    glEnable( GL_AUTO_NORMAL );
+    glEnable( GL_NORMALIZE );
+    
+    
+    
+    drawPlane();
+    drawCloserSphere();
+    drawFartherSphere();
+    
     glutSwapBuffers();
-    glutPostRedisplay();
+    glFlush();
 }
 
-void reshape(int w, int h)
-{
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-    //gluPerspective(30.0, w/h, 1, 100);
-    glOrtho(-1.5, 1.5, -0.3, 2.2, 0, 100);
-    glutPostRedisplay();
+// keyboard callback
+void keyboard( unsigned char key, int x, int y ) {
+    switch( key ) {
+        case 'q' :
+            exit( EXIT_SUCCESS );
+            break;
+        case 'Q' :
+            exit( EXIT_SUCCESS );
+            break;
+        case 033 :
+            exit( EXIT_SUCCESS );
+            break;
+    }
 }
 
- 
- int main(int argc, char** argv)
- {
-    glutInit(&argc, argv);
- 
-    glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
-    glutInitWindowSize(800, 600);
-    glutCreateWindow("2012210067_term");
-    glClearColor(0.0, 0.0, 0.0, 1.0);
-    glutDisplayFunc(display);
-    glutReshapeFunc(reshape);
+int main( int argc, char** argv ) {
+    /* configure and open window */
+    glutInit( &argc, argv );
+    glutInitDisplayMode( GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH );
+    glutInitWindowPosition( 0, 0 );
+    glutInitWindowSize( 800, 800 );
+    glutCreateWindow( "Term Project By Jina" );
     
-    glutMainLoop();
+    init();
     
-    return 0;
- }
+    glutDisplayFunc( display );
+    glutKeyboardFunc( keyboard );
+    
+    glutMainLoop();	
+    
+    return( 0 );
+}
 
