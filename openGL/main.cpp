@@ -96,42 +96,6 @@ bool FindCurrentPosNode(const Vector3 vObjPos, OctreeNode* const pNode){
         return true;
 }
 
-//1 : v, 2 : vt, 3: vn
-struct f_struct{
-    int a1, b1, c1;
-}ff;
-
-vector<Vector3> v;
-vector<Vector3> vn;
-vector<f_struct> f;
-
-Vector3D unit(Vector3 a){
-    float size;
-    size = sqrt(pow(a.x,2) + pow(a.y,2) + pow(a.z,2));
-    a.x /= size, a.y /= size, a.z /= size;
-    return a;
-}
-
-Vector3 cross_product(Vector3 t1, Vector3 t2, Vector3 t3)
-{
-    Vector3D v1, v2, ans;
-    
-    v1.x = t2.x - t1.x;
-    v1.y = t2.y - t1.y;
-    v1.z = t2.z - t1.z;
-    
-    v2.x = t3.x - t1.x;
-    v2.y = t3.y - t1.y;
-    v2.z = t3.z - t1.z;
-    
-    // a x b = (a2b3 - a3b2, a3b1 - a1b3, a1b2 - a2b1)
-    ans.x = v1.y*v2.z - v1.z*v2.y;
-    ans.y = v1.z*v2.x - v1.x*v2.z;
-    ans.z = v1.x*v2.y - v1.y*v2.x;
-    
-    return ans;
-};
-
 
 void display()
 {
@@ -159,31 +123,6 @@ void reshape(int w, int h)
  
  int main(int argc, char** argv)
  {
- 
-    char s;
-    char check;
-    FILE *fp = fopen("batman3.obj", "r");
-    
-    while (!feof(fp)){
-        fscanf(fp, "%c", &s);
-        if (s == 'v')
-        {
-            fscanf(fp, "%c", &check);
-            if (check == ' ')
-            {
-                fscanf(fp, "%f  %f  %f\n", &vec.x, &vec.y, &vec.z);
-                v.push_back(vec);
-            }
-        }
-        else if (s == 'f')
-        {
-            fscanf(fp, " %d %d %d\n", &ff.a1, &ff.b1, &ff.c1);
-            f.push_back(ff);
-        }
-    }
-    
-    vertex_normal();
-   
     glutInit(&argc, argv);
  
     glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
