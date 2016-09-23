@@ -7,10 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3C4529441B0276CF00E79E2C /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C4529431B0276CF00E79E2C /* main.cpp */; };
+		3C3774661B2E0277002BB431 /* reflection.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3C3774651B2E01FC002BB431 /* reflection.txt */; };
 		3C45294B1B027A8400E79E2C /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C45294A1B027A8400E79E2C /* OpenGL.framework */; };
 		3C45294D1B027A8A00E79E2C /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C45294C1B027A8A00E79E2C /* GLUT.framework */; };
-		3C4529541B02815400E79E2C /* batman3.obj in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3C4529531B02815400E79E2C /* batman3.obj */; };
+		3C8677891B2224EB006FB067 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C8677871B2224EB006FB067 /* main.cpp */; };
+		3C86778B1B223212006FB067 /* final.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3C8677811B2224AB006FB067 /* final.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -20,18 +21,21 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
-				3C4529541B02815400E79E2C /* batman3.obj in CopyFiles */,
+				3C3774661B2E0277002BB431 /* reflection.txt in CopyFiles */,
+				3C86778B1B223212006FB067 /* final.txt in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3C3774621B2DFCAC002BB431 /* refraction.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = refraction.txt; sourceTree = "<group>"; };
+		3C3774651B2E01FC002BB431 /* reflection.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = reflection.txt; sourceTree = "<group>"; };
 		3C4529401B0276CF00E79E2C /* openGL */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = openGL; sourceTree = BUILT_PRODUCTS_DIR; };
-		3C4529431B0276CF00E79E2C /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		3C45294A1B027A8400E79E2C /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		3C45294C1B027A8A00E79E2C /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
-		3C4529531B02815400E79E2C /* batman3.obj */ = {isa = PBXFileReference; lastKnownFileType = text; path = batman3.obj; sourceTree = "<group>"; };
+		3C8677811B2224AB006FB067 /* final.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = final.txt; sourceTree = "<group>"; };
+		3C8677871B2224EB006FB067 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,7 +54,6 @@
 		3C4529371B0276CF00E79E2C = {
 			isa = PBXGroup;
 			children = (
-				3C4529531B02815400E79E2C /* batman3.obj */,
 				3C45294C1B027A8A00E79E2C /* GLUT.framework */,
 				3C45294A1B027A8400E79E2C /* OpenGL.framework */,
 				3C4529421B0276CF00E79E2C /* openGL */,
@@ -69,7 +72,10 @@
 		3C4529421B0276CF00E79E2C /* openGL */ = {
 			isa = PBXGroup;
 			children = (
-				3C4529431B0276CF00E79E2C /* main.cpp */,
+				3C3774651B2E01FC002BB431 /* reflection.txt */,
+				3C3774621B2DFCAC002BB431 /* refraction.txt */,
+				3C8677811B2224AB006FB067 /* final.txt */,
+				3C8677871B2224EB006FB067 /* main.cpp */,
 			);
 			path = openGL;
 			sourceTree = "<group>";
@@ -130,7 +136,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3C4529441B0276CF00E79E2C /* main.cpp in Sources */,
+				3C8677891B2224EB006FB067 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -217,6 +223,10 @@
 		3C4529481B0276CF00E79E2C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/openGL/picLibrary",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -224,6 +234,10 @@
 		3C4529491B0276CF00E79E2C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/openGL/picLibrary",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -247,6 +261,7 @@
 				3C4529491B0276CF00E79E2C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

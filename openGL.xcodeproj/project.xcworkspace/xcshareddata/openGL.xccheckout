@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>396A0A17-43E9-48FB-B86B-723F30F707BF</string>
+	<key>IDESourceControlProjectName</key>
+	<string>openGL</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>8F896B84408DA6A9FAD5EC086BD85FB52E7A1818</key>
+		<string>https://github.com/tsrara/cg.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>openGL.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>8F896B84408DA6A9FAD5EC086BD85FB52E7A1818</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/tsrara/cg.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>8F896B84408DA6A9FAD5EC086BD85FB52E7A1818</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>8F896B84408DA6A9FAD5EC086BD85FB52E7A1818</string>
+			<key>IDESourceControlWCCName</key>
+			<string>openGL</string>
+		</dict>
+	</array>
+</dict>
+</plist>
